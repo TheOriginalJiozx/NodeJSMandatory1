@@ -11,7 +11,7 @@ git clone github.com/user/repo.git
 # push application to github
 git init
 git add .
-git commit -m "commit besked"
+git commit -m "commit message"
 git push origin master
 
 # install dependencies
@@ -31,7 +31,7 @@ npm run build
 # create package.json
 npm init
 
-# create package-lock.json
+# install Express to create package-lock.json
 npm install express
 npm i express
 

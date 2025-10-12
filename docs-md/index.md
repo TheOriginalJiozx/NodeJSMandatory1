@@ -4,10 +4,10 @@ This is the homepage for my documentation website created with Node.js and Expre
 
 ## Contents
 
-- [Tools](./tools) – the tools I have used
+- [Tools](./tools) – the tools we have used in class
 - [Commands](./commands) – terminal-commands we have used in class
 - [Theory](./theory) – theory and learning objectives
 
-## Example
+## Code snippet
 ```javascript
 console.log("Hello world from index.md!");

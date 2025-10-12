@@ -43,7 +43,8 @@ app.get("/", async (req, res) => {
 app.get("/docs/:slug", async (req, res, next) => {
   try {
     const html = await renderDoc(req.params.slug);
-    res.render("doc", { title: req.params.slug, content: html });
+    const title = req.params.slug.charAt(0).toUpperCase() + req.params.slug.slice(1);
+    res.render("doc", { title: title, content: html });
   } catch {
     next();
   }
