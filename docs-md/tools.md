@@ -17,7 +17,7 @@ node app.js
 
 ## Nodemon
 
-**Nodemon** is a commandline-tool that automatically restarts our Express application whenever it detectcs changes.
+**Nodemon** is a commandline-tool that automatically restarts our Express application whenever it detects changes.
 
 ```bash
 nodemon app.js
