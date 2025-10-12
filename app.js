@@ -11,9 +11,10 @@ const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "views"));
+app.use(expressLayouts);
+app.set("layout", "layout");
 
 app.use(express.static(path.join(process.cwd(), "public")));
-app.use(expressLayouts);
 
 const md = new MarkdownIt({
   html: true,
@@ -22,7 +23,7 @@ const md = new MarkdownIt({
     if (lang && hljs.getLanguage(lang)) {
       try {
         return `<pre><code class="hljs">${hljs.highlight(str, { language: lang }).value}</code></pre>`;
-      } catch (__) {}
+      } catch {}
     }
     return `<pre><code class="hljs">${md.utils.escapeHtml(str)}</code></pre>`;
   }
@@ -31,21 +32,19 @@ const md = new MarkdownIt({
 async function renderDoc(slug = "index") {
   const file = path.join(process.cwd(), "docs-md", `${slug}.md`);
   const content = await fs.readFile(file, "utf8");
-  const html = md.render(content);
-  return html;
+  return md.render(content);
 }
 
 app.get("/", async (req, res) => {
   const html = await renderDoc("index");
-  res.render("doc", { title: "Forside", content: html });
+  res.render("doc", { title: "Home", content: html });
 });
 
 app.get("/docs/:slug", async (req, res, next) => {
   try {
-    const slug = req.params.slug;
-    const html = await renderDoc(slug);
-    res.render("doc", { title: slug, content: html });
-  } catch (err) {
+    const html = await renderDoc(req.params.slug);
+    res.render("doc", { title: req.params.slug, content: html });
+  } catch {
     next();
   }
 });
@@ -55,5 +54,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server kører på http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });

@@ -6,14 +6,14 @@
   <title><%= title %> — Dokumentation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
   <header class="bg-white shadow-sm">
     <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-      <h1 class="text-xl font-semibold">Min Kursus-Dokumentation</h1>
+      <h1 class="text-xl font-semibold">Node.js Documentation</h1>
       <nav>
-        <a class="mr-4 hover:underline" href="/">Forside</a>
+        <a class="mr-4 hover:underline" href="/">Home</a>
         <a class="mr-4 hover:underline" href="/docs/tools">Tools</a>
         <a class="mr-4 hover:underline" href="/docs/commands">Terminal</a>
         <a class="hover:underline" href="/docs/theory">Theory</a>
@@ -21,12 +21,14 @@
     </div>
   </header>
 
-  <main class="container mx-auto px-4 py-8">
-    <%- body %>
+  <main class="container mx-auto px-4 py-8 flex-grow">
+    <article class="prose prose-slate max-w-none mx-auto">
+      <%- body %>
+    </article>
   </main>
 
   <footer class="border-t mt-8 py-6 text-center text-sm text-slate-600">
-    © <%= new Date().getFullYear() %> — Dokumentation
+    © <%= new Date().getFullYear() %> — Documentation
   </footer>
 
   <script src="/js/client.js"></script>

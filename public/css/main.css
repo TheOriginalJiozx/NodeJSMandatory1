@@ -1,0 +1,29 @@
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: #0f172a;
+}
+
+pre code.hljs {
+  display: block;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: #0b1220;
+  color: #e6eef8;
+  overflow-x: auto;
+}
+
+.prose h1:focus, .prose h2:focus {
+  outline: 3px solid rgba(59,130,246,0.45);
+  outline-offset: 3px;
+}
