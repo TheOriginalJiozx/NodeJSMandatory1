@@ -1,4 +1,4 @@
-# Tools
+# Værktøjer
 
 Denne side forklarer alle de værktøjer, vi har brugt i undervisningen.
 

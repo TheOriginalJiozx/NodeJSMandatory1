@@ -1,3 +1,9 @@
+# Teori
+
+Denne side gennemgør alt teori
+
+---
+
 # 01. Introduction
 
 **Dato:** 28. august
