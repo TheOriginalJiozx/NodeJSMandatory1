@@ -21,7 +21,7 @@
 node app.js
 ```
 
-Moduler vi bl.a. har brugt i Node.js er fs (filsystem) og path.
+**Moduler** vi bl.a. har brugt i Node.js er **fs** (filsystem) og **path**.
 
 ## Variabler
 
@@ -65,9 +65,9 @@ console.log("5" - 1); // Dette udskrives som en number (resultat = 4), da der fo
 
 ## REST API-konventioner
 
-REST API'er definerer hvordan klinter og serverer kommunikerer ved hjælp af HTTP.
+**REST API'er** definerer hvordan klinter og serverer kommunikerer ved hjælp af HTTP.
 
-Første konvention: HTTP-verber
+**Første konvention:** HTTP-verber
 ```javascript
 GET -> henter data
 POST -> opretter data
@@ -75,13 +75,13 @@ PUT/PATCH -> opdaterer data
 DELETE -> sletter data
 ```
 
-Anden konvention: Rækkefølge og struktur (der skal organiseres efter ressource og ID)
+**Anden konvention:** Rækkefølge og struktur (der skal organiseres efter ressource og ID)
 ```javascript
 /api/users -> alle brugere
 /api/users/:id -> specifik bruger
 ```
 
-Tredje konvention: Navngivning (Navneord i flertal) -> brug navnord i flertal
+**Tredje konvention:** Navngivning (Navneord i flertal) -> brug navnord i flertal
 
 ## Eksempel
 
@@ -96,7 +96,7 @@ Tredje konvention: Navngivning (Navneord i flertal) -> brug navnord i flertal
 
 ## Richardson Maturity Model
 
-Richardson Maturity Model siger, at REST API'er kan vurderes ud fra niveauer mellem 0 og 3.
+**Richardson Maturity Model** siger, at REST API'er kan vurderes ud fra niveauer mellem 0 og 3.
 
 <table class="table-auto border-collapse border border-slate-300 text-sm">
   <thead class="bg-slate-100">
@@ -152,7 +152,7 @@ Det anbefales at bruge en linter for at finde kodefejl og for at forbedre kodekv
 
 ## Git i terminalen
 
-Git bruges til versionstyringen direkte i en terminal.
+**Git** bruges til versionstyringen direkte i en terminal.
 
 Det man typisk bruger git til er at pushe noget til GitHub:
 
