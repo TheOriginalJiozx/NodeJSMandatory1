@@ -1,6 +1,6 @@
 # Velkommen til min dokumentation
 
-Dette er hjemmesiden for min dokumentationshjemmeside, som er oprettet med Node.js og Express.
+Dette er forsiden for min dokumentationshjemmeside, som er oprettet med Node.js og Express.
 
 ## Indhold
 
