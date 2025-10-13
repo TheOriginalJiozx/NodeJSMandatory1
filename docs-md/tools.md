@@ -1,15 +1,16 @@
 # Tools
 
-This page explains all the tools we have used in class.
+Denne side forklarer alle de værktøjer, vi har brugt i undervisningen.
 
 ---
 
 ## Node.js
 
-**Node.js** is a JavaScript runtime built on Chrome’s V8 engine.  
-It allows us to run JavaScript code outside of the browser — for example, on a web server.
+**Node.js** er en JavaScript-runtime bygget på Chromes V8-motor.
 
-We use Node.js to run our Express app.
+Den giver os mulighed for at køre JavaScript-kode uden for browseren – for eksempel på en webserver.
+
+Vi bruger Node.js til at køre vores Express-app.
 
 ```bash
 node app.js
@@ -17,16 +18,16 @@ node app.js
 
 ## Nodemon
 
-**Nodemon** is a commandline-tool that automatically restarts our Express application whenever it detects changes.
+**Nodemon** er et kommandolinjeværktøj, der automatisk genstarter din Express-applikation, når den registrerer ændringer.
 
 ```bash
 nodemon app.js
 ```
 ## Express
 
-**Express** is a Node.js web application framework that is used to build and manage web servers.
+**Express** er et Node.js webapplikationsframework, der bruges til at bygge og administrere webservere.
 
-```bash
+```javascript
 import express from "express";
 const app = express();
 app.get("/", (req, res) => res.send("Hello Express"));

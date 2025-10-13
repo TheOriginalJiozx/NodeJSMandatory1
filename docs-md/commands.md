@@ -4,36 +4,36 @@ Here are some terminal commands we use
 
 ## Installation
 ```bash
-# clone repo
+# klon repo
 git clone git@github.com:user/repo.git
 git clone github.com/user/repo.git
 
-# push application to github
+# push applikation til github
 git init
 git add .
-git commit -m "commit message"
+git commit -m "commit besked"
 git push origin master
 
-# install dependencies
+# installer dependencies
 npm install
 npm i
 
-# install dependencies globally
+# installer dependencies globalt
 npm install -g
 npm i -g
 
-# run dev
+# kør dev
 npm run dev
 
-# run build
+# kør build
 npm run build
 
-# create package.json
+# opret package.json
 npm init
 
-# install Express to create package-lock.json
+# installer Express for at oprette package-lock.json
 npm install express
 npm i express
 
-# auto restart application on save
+# auto genstart applikation når ændringer opfanges
 nodemon app.js

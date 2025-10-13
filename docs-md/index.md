@@ -1,13 +1,14 @@
-# Welcome to my documentation
+# Velkommen til min dokumentation
 
-This is the homepage for my documentation website created with Node.js and Express.
+Dette er hjemmesiden for min dokumentationshjemmeside, som er oprettet med Node.js og Express.
 
-## Contents
+## Indhold
 
-- [Tools](./tools) – the tools we have used in class
-- [Commands](./commands) – terminal-commands we have used in class
-- [Theory](./theory) – theory and learning objectives
+- [Tools](./tools) – de værktøjer vi har brugt til undervisningen
+- [Commands](./commands) – terminal kommandoerne vi har brugt til undervisningen
+- [Theory](./theory) – teori og læringsmål
 
 ## Code snippet
 ```javascript
 console.log("Hello world from index.md!");
+```
