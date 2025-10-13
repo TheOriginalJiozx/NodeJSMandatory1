@@ -1,6 +1,6 @@
 # Teori
 
-Denne side gennemgør alt teori
+Denne side gennemgår alt teori
 
 ---
 
