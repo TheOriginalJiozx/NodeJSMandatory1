@@ -276,7 +276,7 @@ helloYou((name) => {
 });
 ```
 
-(name) => { ... } eller function(name) => { ... } er her anonyme funktion, og de bliver hverken gemt i en variabel eller har et navn. De bliver sendt som et argument til <code>helloYou</code> og bliver kaldt med callback(person).
+<code>(name) => { ... }</code> eller <code>function(name) => { ... }</code> er her anonyme funktioner, og de bliver hverken gemt i en variabel eller har et navn. De bliver sendt som et argument til <code>helloYou</code> og bliver kaldt med callback(person).
 
 ### Resultat hvis eksekveret
 
