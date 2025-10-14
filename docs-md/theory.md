@@ -21,7 +21,7 @@ Denne side gennemgår alt teori
 ## Hvad er Node.js?
 **Node.js** er et JavaScript-runtime miljø, som gør det muligt at køre JavaScript uden for en browser, typisk på en server. Node.js bruges ofte til at bygge backend-applikationer.
 
-## Start en applikation
+### Start en applikation
 
 ```bash
 node app.js
@@ -61,7 +61,7 @@ const e = 2.718; // Bruges til konstanter
 
 JavaScript auto-konverter mellem typer i visse situationer.
 
-## Eksempel
+### Eksempel
 
 ```javascript
 console.log("5" + 1); // 1 bliver her automatisk konverteret til en string da "5" er en string. Dette udskrives som en string (resultat = 51), da der her blev lagt en ´string´ (1) til "5" (også en string).
@@ -87,9 +87,9 @@ DELETE -> sletter data
 /api/users/:id -> specifik bruger
 ```
 
-**Tredje konvention:** Navngivning (Navneord i flertal) -> brug navnord i flertal
+**Tredje konvention:** Navngivning (Navneord i flertal) -> brug navneord i flertal
 
-## Eksempel
+### Eksempel
 
 ```javascript
 /api/students
@@ -138,7 +138,7 @@ DELETE -> sletter data
 
 Det er vigtigt at variabler, funktioner, metoder og andet har meningsfulde navne.
 
-## Clean Code Eksempel
+### Clean Code Eksempel
 
 ```javascript
 function sumOfAges(a + b) {
@@ -146,7 +146,7 @@ function sumOfAges(a + b) {
 }
 ```
 
-## Bad Code Eksempel
+### Bad Code Eksempel
 
 ```javascript
 function SOA(a + b) {
@@ -154,7 +154,7 @@ function SOA(a + b) {
 }
 ```
 
-Det anbefales at bruge en linter for at finde kodefejl og for at forbedre kodekvalitet.
+Det anbefales at bruge en linter for at finde kodefejl og for at forbedre kodekvalitet. En linter hjælper dig med automatisk at overholde alle tre clean code konventioner.
 
 ## Git i terminalen
 
@@ -167,6 +167,235 @@ git init
 git add .
 git commit -m "commit besked"
 git push origin master
+```
+
+# 02. First Server  
+**Dato:** 4. september  
+
+## Emner dækket
+- Code conventions / Clean Code (Strict Mode & ESLint)  
+- Variabler og funktioner  
+- Callback functions  
+- Build tools og package managers  
+- package.json  
+- Express  
+- GET requests  
+
+---
+
+## Clean Code & Strict Mode
+
+I JavaScript kan man lave fejl som f.eks.:
+
+```bash
+ReferenceError
+Undefined Variables
+Type Coercion Error
+ASI Error
+TypeError
+Syntax Error
+```
+
+Som JavaScript tillader.
+
+Ved at bruge **Strict Mode** og **Clean Code-Principper** (ikke nødvendigvis alle principperne) kan vi undgå mange af disse fejl.
+
+For at bruge **Strict Mode** skal du blot tilføje dette øverst i dine JS filer:
+
+```javascript
+"use strict";
+```
+
+**Strict Mode** forbyder eksempelvis Undefined Variables, TypeError, Syntax Error og utilsigtet overskrivelse af Global Variables.
+
+### Installation
+
+```bash
+npm install eslint --save-dev
+npx eslint --init
+```
+
+### Fejl og advarsels-tjek
+
+```bash
+npx eslint .
+```
+
+## Variabler og Scoping
+
+<code>const</code> bruges til konstanter
+
+<code>let</code> bruges hvis værdierne skal ændres
+
+<code>var</code> bør undgås!
+
+### Eksempel
+
+```javascript
+function aboutMe() {
+    const name = "Omar";
+    let age = 30;
+}
+```
+
+## Functions & Callback Functions
+
+En callback function er en funktion, som gives som et argument til en anden funktion og bliver kaldt på et senere tidspunkt.
+
+### Eksempel på klassisk callback
+
+```javascript
+function helloYou(name) {
+    console.log(`Hej ${name}`);
+}
+
+function processPerson(callback) {
+    const person = "Kasper";
+    callback(person);
+}
+
+processPerson(helloYou);
+```
+
+### Resultat hvis eksekveret
+
+```bash
+Hej Kasper
+```
+
+### Eksempel på anonym callback
+
+```javascript
+function helloYou(callback) {
+    const person = "Kasper";
+    callback(person);
+}
+
+helloYou((name) => {
+    console.log(`Hej ${name}`);
+});
+```
+
+(name) => { ... } eller function(name) => { ... } er her anonyme funktion, og de bliver hverken gemt i en variabel eller har et navn. De bliver sendt som et argument til <code>helloYou</code> og bliver kaldt med callback(person).
+
+### Resultat hvis eksekveret
+
+```bash
+Hej Kasper
+```
+
+## Build Tools & Package Managers
+
+En package manager styrer dependencies i et projekt. Vi har gjort brug af NPM, men der findes andre.
+
+<table class="table-auto border-collapse border border-slate-300 text-sm">
+  <thead class="bg-slate-100">
+    <tr>
+      <th class="border border-slate-300 px-2 py-1 text-left">Værktøj</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">Beskrivelse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border px-2 py-1">NPM</td>
+      <td class="border px-2 py-1">Standard Node.js package manager.</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">Yarn</td>
+      <td class="border px-2 py-1">Indeholder hurtigere alternativer med caching.</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">pnpm</td>
+      <td class="border px-2 py-1">Gemmer pakker effekt og sparer diskplads<br>
+      ("disk space efficient package manager").<br>
+      2x hurtigere end npm.</td>
+    </tr>
+  </tbody>
+</table>
+
+## package.json
+
+<code>package.json</code> indeholder beskrivelse af dit projekt og alle dets dependencies.
+
+### Opret package.json manuelt
+
+```bash
+npm init
+```
+
+### Opret package.json automatisk
+
+```bash
+npm init -y
+```
+
+"-y" betyder "yes" til alle prompts og udfylder alt "by default".
+
+## Express
+
+Express er et Node.js web-applikations framework, som gør det nemmere at oprette HTTP-servere.
+
+### Installation
+
+```bash
+npm install express
+npm i express # alternativ måde (i = install)
+```
+
+### Eksempel
+
+```javascript
+import express from "express";
+const app = express();
+const PORT = 3000;
+
+app.get("/", (req, res) => {
+    res.send("Hello from Express!");
+});
+
+app.listen(PORT, () => console.log(`Serveren lytter på port ${PORT}`));
+```
+
+### Terminal
+
+```
+Serveren lytter på port 3000
+```
+
+### Vist på Index
+
+```
+Hello from Express!
+```
+
+## GET Requests
+
+<code>GET bruges til at hende data fra vores server.</code>
+
+### Eksempel på GET Request
+
+```javascript
+app.get("/hellYou", (req, res) => {
+    const name = req.query.name || "Gæst";
+    res.send(`Hej ${name}!`);
+});
+```
+
+### Tilgå siden i tilfælde af med og uden navn
+
+```bash
+http://localhost:3000/helloYou?name=Omar; # Hej Omar!
+
+http://localhost:3000/helloYou # Hej Gæst!
+```
+
+## node_modules
+
+<code>node_modules</code> er en mappe, som indeholder alle de pakker vores projekt afhænger af. Hver gang man eksekverer nedenstående, så bliver mappen automatisk gendannet.
+
+### Node Package Manager Installation
+```bash
+npm install
 ```
 
 # 04. HTML / Time  
@@ -252,10 +481,13 @@ console.log(now.toISOString()); // Live
 
 **Deployment** betyder at offentliggøre applikationen.
 Typiske steps er (Eksemplet er: Vercel efter log ind):
+
+```bash
 1. Add New -> Project
 2. Import Git Repository -> Import
-3. Sørg for at importere .env eller indtaste .env contents
+3. Sørg for at importere .env eller indtaste .env contents hvis du eksempelvis har en database
 4. Deploy
+```
 
 ## Fetch
 
