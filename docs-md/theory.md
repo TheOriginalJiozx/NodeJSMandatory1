@@ -398,6 +398,274 @@ http://localhost:3000/helloYou # Hej Gæst!
 npm install
 ```
 
+# 03. Loops methods
+**Dato** 11. september
+
+## Emner dækket
+- Nodemon
+- Loops og loop methods i JavaScript
+- CRUDable REST API - Part I
+- Anatomy af et URL
+- Alle måder man kan sende fra en klient til en server
+- Visning af HTML med Express
+
+---
+
+## Nodemon
+
+**Nodemon** er et værktøj, som er god til at hjælpe i udviklingsfasen. Nodemon genstarter applikationen når den opfanger ændringer.
+
+```bash
+nodemon app.js
+```
+
+## Loops & Loop methods
+
+**Loops** er brugbare hvis man vil køre den samme kode gentagene gang med en ny værdi hver gang. Bruges ofte når man arbejder med arrays.
+
+### Copy + Paste
+
+```javascript
+text += footballs[0] + "<br>";
+text += footballs[1] + "<br>";
+text += footballs[2] + "<br>";
+text += footballs[3] + "<br>";
+text += footballs[4] + "<br>";
+text += footballs[5] + "<br>";
+```
+
+### For Loop
+```javascript
+let footballs = ["Adidas", "Nike", "Puma"];
+let text = "";
+
+for (let i = 0; i < footballs.length; i++) {
+    text += footballs[i] + "<br>";
+} // bruges når man ved hvor mange gange koden skal køre.
+```
+
+### While Loop
+```javascript
+let footballs = ["Adidas", "Nike", "Puma"];
+let text = "";
+
+while (i < footballs.length) {
+    text += footballs[i] + "<br>";
+    i++;
+} // kører KUN hvis betingelsen er sand.
+```
+
+### Do While Loop
+```javascript
+let footballs = ["Adidas", "Nike", "Puma"];
+let text = "";
+
+do {
+    text += footballs[i] + "<br>";
+    i++;
+} while (i < footballs.length); // kører mindst en gang, selvom betingelsen er falsk.
+```
+
+**Loop methods** gør det nemt at arbejde med arrays uden at skulle skrive de klassiske loops, som ses foroven.
+
+### forEach()
+```javascript
+const footballs = ["Adidas", "Nike", "Puma"];
+
+footballs.forEach(function(ball) {
+    console.log(ball);
+}); // udfører en funktion for hvert element i const arrayet.
+```
+
+### map()
+```javascript
+const ratings = [10, 7, 7];
+const doubledRatings = numbers.map(doubleRating => doubleRating * 2);
+console.log(doubledRatings); // returnerer et nyt array ([20, 14, 14]) baseret på const ratings arrayet.
+```
+
+### filter()
+```javascript
+const ratings = [10, 7, 7];
+const over7 = ratings.filter(rating => rating > 7);
+console.log(over7); // returnerer et nyt array med elementer, som opfylder betingelsen rating > 7 ([10])
+```
+
+### find()
+```javascript
+const ratings = [10, 7, 7];
+const found = ratings.find(rating => rating <> 10);
+console.log(found); // finder det første element, som opfylder betingelsen rating < 10 ([7])
+```
+
+### reduce()
+```javascript
+const ratings = [10, 7, 7];
+const sum = ratings.reduce((total, rating) => total + rating);
+console.log(sum); // returerner summen af alle ratings (24)
+```
+
+Der findes også <code>for...of</code> og <code>for...in</code> loop methods, som jeg ikke vil komme ind på.
+
+### Funktionel tænkning og sideeffekter
+
+**Funktionel tilgang** betyder, at vi undgår at ændre eksisterende data og i stedet returner nye værdier.
+
+### Eksempel
+```javascript
+// Ikke-funktionel: ændrer det originale array
+let ratings = [10, 7, 7];
+ratings.forEach((_, i) => ratings[i] *= 2);
+
+// Funktionel: oprettet et nyt array
+const doubledRatings = ratings.map(r => r * 2);
+```
+
+## CRUDable REST API - Part I
+
+Et **CRUDable REST API** betyder, at dit API understøtter de 4 CRUD operationer, <code>Create</code>, <code>Read</code>, <code>Update</code>, <code>Delete</code>.
+
+Mere om CRUDable REST API'er vil blive nævn i næste part.
+
+## Anatomy af et URL
+
+Et **URL** viser hvor en ressource eksisterer på nettet.
+
+### Eksempel
+
+```bash
+http://localhost:3000/aflevering/docs/theory
+```
+
+###
+<table class="table-auto border-collapse border border-slate-300 text-sm">
+  <thead class="bg-slate-100">
+    <tr>
+      <th class="border border-slate-300 px-2 py-1 text-left">Del</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">Navn</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">Forklaring</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border px-2 py-1">http</td>
+      <td class="border px-2 py-1">Protokol</td>
+      <td class="border px-2 py-1">Hvordan klienten kommunikerer med serveren</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">localhost</td>
+      <td class="border px-2 py-1"><code>Host / Domæne</code></td>
+      <td class="border px-2 py-1">Serverens web-adresse</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">:3000</td>
+      <td class="border px-2 py-1">Port</td>
+      <td class="border px-2 py-1">Hvilken port serveren lytter på</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">/docs/theory</td>
+      <td class="border px-2 py-1"><code>Path</td>
+      <td class="border px-2 py-1">Den konkrete rute på serveren</td>
+    </tr>
+  </tbody>
+</table>
+
+## Data fra klient til server
+
+Der kan sendes data fra klienten til serveren på flere forskellige måder, som f.eks. ved brug af cookies.
+
+###
+<table class="table-auto border-collapse border border-slate-300 text-sm">
+  <thead class="bg-slate-100">
+    <tr>
+      <th class="border border-slate-300 px-2 py-1 text-left">Metode</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">Eksempel</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">Bruges typisk til</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border px-2 py-1">Query parametre</td>
+      <td class="border px-2 py-1">/api/students?id=1</td>
+      <td class="border px-2 py-1">Filtrering eller små forespørgelser</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">URL parametre</td>
+      <td class="border px-2 py-1"><code>/api/students/1</code></td>
+      <td class="border px-2 py-1">Ressource-ID'er i REST API'er</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">Request body (POST/PUT)</td>
+      <td class="border px-2 py-1">JSON-data i body</td>
+      <td class="border px-2 py-1">Oprette eller opdatere data</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">Headers</td>
+      <td class="border px-2 py-1"><code>Authorization: Bearer ...</td>
+      <td class="border px-2 py-1">Autentifikation</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">Cookies</td>
+      <td class="border px-2 py-1"><code>Sendes automatisk med requests</td>
+      <td class="border px-2 py-1">Sessioner og log ind</td>
+    </tr>
+  </tbody>
+</table>
+
+### Request body
+
+```javascript
+
+// Step 1: Lav en fetch
+
+fetch("http://localhost:3000/api/students", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: "Omar",
+        age: 30
+    })
+});
+
+// Step 2: Brug middleware'en
+
+import express from "express";
+const app = express();
+app.use(express.json()); // det er middleware'en
+
+app.post("/api/students", (req, res) => {
+    console.log(req.body); // viser JSON-data i body
+    res.send(`Studerende ${req.body.name} tilføjet!`);
+});
+
+app.listen(3000, () => console.log("Serveren lytter på port 3000"));
+
+// Step 3: Start serveren
+
+{ name: 'Omar', age: 30 } // serverens konsol viser dette
+
+Studerende Omar tilføjet! // du (klienten) ser dette
+```
+
+## Visning af HTML med Express
+
+Express kan vise HTML-filer på denne måde (som request):
+
+```javascript
+import express from "express";
+import path from "path";
+
+const app = express();
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "index.html"));
+});
+
+app.listen(3000, () => console.log("Serveren lytter på port 3000"));
+```
+
 # 04. HTML / Time  
 **Dato:** 18. september  
 
@@ -409,9 +677,9 @@ npm install
 
 ---
 
-## CRUDable REST API
+## CRUDable REST API - Part II
 
-Et **CRUD-API** består af fire grundlæggende operationer:
+Et **CRUDable REST API** består af fire grundlæggende operationer:
 
 <table class="table-auto border-collapse border border-slate-300 text-sm">
   <thead class="bg-slate-100">
