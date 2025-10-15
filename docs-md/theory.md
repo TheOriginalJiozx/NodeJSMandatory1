@@ -738,7 +738,7 @@ export default router;
 
 **JavaScript** håndterer datoer og tid med et Date-objekt.
 
-### Eksempel - Hent nuværende tid
+### Eksempel - Hent nuværende dato og tid
 
 ```javascript
 const now = new Date();
@@ -761,7 +761,7 @@ Typiske steps er (Eksemplet er: Vercel efter log ind):
 
 **Fetch** betyder at hente data, og det bruges til at hente/sende data mellem frontend og backend.
 
-## GET-forespørgsel
+### GET-forespørgsel
 
 ```javascript
 fetch("api/users")
@@ -770,7 +770,7 @@ fetch("api/users")
     .then(data => console.log(data));
 ```
 
-## Post-forespørgsel
+### Post-forespørgsel
 
 ```javascript
 fetch("/api/users", {
@@ -780,12 +780,197 @@ fetch("/api/users", {
 });
 ```
 
-## Async/await
+### Async/await
 
 ```javascript
 async function loadUsers() {
     const res = await fetch("/api/users");
     const data = await res.json();
     console.log(data);
+}
+```
+
+# 05. Export / Import
+**Dato:** 25. september
+
+## Emner dækket
+- Visning af statiske filer i Express
+- Eksportering og importering i frontend (type="module" attribut)
+- CommonJS vs ES Modules i Node.js
+- Client-side redirection vs server side redirection
+- npm init og meta data i package.json
+
+---
+
+## Visning af statiske filer i Express
+
+**"Visning af statiske filer"** betyder, at vores Express server leverer filer **direkte** til klienten, uden filerne først skal behandles i backend-logikken.
+
+### Eksempler på statiske filer
+
+<code>HTML</code>
+<code>CSS</code>
+<code>JavaScript</code>
+<code>Billeder</code>
+<code>TypeScript</code>
+<code>MD Filer</code>
+<code>PDF'er</code>
+
+### Eksempel
+
+```javascript
+// Opret en "public"-mappe i dit root document før du går igang
+
+import express from "express";
+import path from "path"; // vigtig!
+
+const app = express();
+
+app.use(express.static(path.join(process.cwd(), "public"))); // "public"-mappen offentliggøres for alle brugere
+
+app.listen(3000, () => console.log("Serveren lytter på port 3000"));
+
+// Nu kan alle statiske filer i "public"-mappen tilgås i en browser.
+
+// public/index.html -> http://localhost:3000 (index er default)
+// public/js/main.js -> http://localhost:3000/js/main.js
+// public/css/main.css -> http://localhost:3000/css/main.css
+```
+
+## Eksportering og importering i frontend (type="module" attribut)
+
+I vores **package.json** kan vi ved brug af <code>"type": "module"</code> eksportere og importere i backend, men ved brug af <code>type="module"</code> som attribut i et <code>script</code>-tag kan vi importere og eksportere i frontend.
+
+### Eksempel
+
+```javascript
+// tilføj i en HTML-fil
+<script type="module" src="main.js"></script>
+
+// math.js eksportering
+export function sum(a + b) {
+    return a + b;
+}
+export const e = 2.718;
+
+// main.js importering
+import { sum, e } from './math.js';
+console.log(sum(10 + 7));
+console.log(e);
+```
+
+## CommonJS vs ES Modules i Node.js
+
+Node.js understøtter to måder man kan importere og eksportere moduler på:
+
+**CommonJS** og **ES Modules**
+
+CommonJS var standarden før ES Modules blev introduceret og blev standarden.
+
+### CommonJS Eksempel
+
+```javascript
+// math.js
+function sum(a, b) {
+    return a + b;
+}
+module.exports = { sum };
+
+// app.js
+const { sum } = require("./math.js");
+console.log(sum(10, 7));
+```
+
+### ES Modules Eksempel
+```bash
+"type": "module"
+```
+
+```javascript
+// math.js
+export function sum(a, b) {
+    return a + b;
+}
+
+// app.js
+import { sum } from "./math.js";
+console.log(sum(10 + 7));
+```
+
+## Client-side redirection vs server-side redirection
+
+**Client-side redirection** betyder, at browseren håndterer viderestillingen, man bliver viderestillet ved brugerinteraktion eller automatisk ved brug af JavaScript eller HTML.
+
+### Eksempler
+
+```html
+<a href="index.html">Gå til forside</a> <!-- kræver brugerinteraktion -->
+```
+
+```javascript
+window.location.href="index.html"; // automatisk viderestilling
+```
+
+```html
+<meta http-equiv="refresh" content="0; url=/index"> <!-- viderestiller efter et bestemt antal milisekunder -->
+```
+
+**Server-side redirection** betyder, at serveren håndterer viderestillingen, man bliver automatisk viderestillet til en ny side. Dette sker typisk ved, at der bliver sendt en HTTP-statuskode (301, 302, 303, 307, 308 m.fl.) sammen med en <code>Location</code>-header.
+
+### Eksempler
+
+```javascript
+res.redirect('/index'); // (Standard 302 redirect)
+res.redirect(301, '/index'); // Permanent redirect
+res.redirect(302, '/index'); // Midlertidig redirect
+
+// alle ovenstående medfører automatiske viderestillinger
+```
+
+```javascript
+setTimeout(() => {
+    res.redirect('/index'); 
+}, 2000); // viderestiller efter 2 sek
+```
+
+## npm init og meta data i package.json
+
+<code>npm init</code> er en terminal-kommando, som bruges til at oprette package.json filen manuelt. Du initialiserer en ny package og opretter dermed et nyt Node.js projekt.
+
+### Hvad sker der præcis når man kører npm init?
+
+```bash
+npm init
+```
+
+### Terminal prompts
+```bash
+- name: Hvad skal dit projekt hedde?
+- version: Initiel projekt version
+- description: kort beskrivelse af dit projekt
+- entry point: main fil i dit projekt # default er index.js
+- test command: hvilken kommando vil du bruge til at køre tests
+- git repository: dit GitHub repository url
+- keywords: et array af keywords, som kan hjælpe andre med at finde dit projekt
+- author: hvad hedder du
+- license: hvilken license vil du bruge? # default er "ISC"
+```
+
+**meta data** i package.json er alt hvad du bliver promptet til at udfylde efter du har kørt <code>npm init</code>.
+
+```json
+{
+"name": "...",
+"version": "...",
+"description": "...",
+"main": "...",
+"repository": {
+    "type": "git",
+    "url": "..."
+  },
+"type": "...",
+"keywords": [...],
+"author": "...",
+"license": "..."
 }
 ```
