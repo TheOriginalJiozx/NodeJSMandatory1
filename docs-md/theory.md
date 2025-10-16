@@ -974,3 +974,82 @@ npm init
 "license": "..."
 }
 ```
+
+# 06. Client vs Server / Miljøvariabler
+**Dato:** 02. oktober
+
+## Emner dækket
+- Package.json scripts
+- Miljøvariabler
+- Fetching i Node.js
+- Semantisk HTML: nav, main, footer
+
+---
+
+## Package.json scripts
+
+I package.json kan man gemme nogle scripts, som kan bruge til at udføre diverse opgaver såsom <code>test</code>.
+
+### Eksempler på scripts
+
+```json
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", // ingen test (npm run test)
+    "start": "node app.js", // start app.js (npm start / npm run start)
+    "dev": "nodemon app.js", // start app.js med nodemon (npm run dev)
+}
+```
+
+## Miljøvariabler
+Miljøvariabler bruges til gemme følsomme ting såsom API-nøgler og database oplysninger uden at hardcode dem i koden, så de ikke bliver misbrugt. Dette gør applikationen mere sikker, fleksibel og nemmere at konfigurere på diverse systemer da alt lægger i en <code>.env</code> fil.
+
+### Eksempel .env
+```bash
+PORT=3000
+MySQL_URL="mysql://localhost:3000/mandatory"
+MySQL_USER="root"
+MySQL_PASSWORD="mysecretpassword"
+```
+
+### Eksempel hent port fra .env
+```javascript
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Serveren lytter på port ${PORT}`));
+```
+
+## Fetching i Node.js (backend) vs Fetching i Browseren (client)
+
+Der er verden til forskel på at fetch'e data i klienten (frontend) og at fetch'e i backend (Node.js)
+
+I frontend kører koden i browseren, og i backenden kører koden i serveren.
+
+Frontendens API-adgang er samme origin eller defineret i CORS, hvorimod backenden har direkte adgang.
+
+### Eksempel
+```javascript
+fetch('/api/frontendDataExample')
+
+await fetch('https://api.backendExample')
+```
+
+### Eksempel (Backend) fetch TheOriginalJiozx på GitHub (mig)
+
+```javascript
+const res = await fetch("https://api.github.com/users/TheOriginalJiozx");
+const data = await res.json();
+console.log(data);
+```
+
+## Semantisk HTML: nav, main, footer
+
+I HTML er der nogle semantiske elementer:
+
+Navigationen, <code>nav</code>, skal være øverst på siden, indhold skal være i et <code>main</code>-tag og footer skal være på bunden i et <code>footer</footer>-tag.
+
+## Bedre struktur i frontend
+
+En velstruktureret frontend har typisk assets og pages mapper hvori de seperarer CSS og JS fra HTML filer.
+
+HTML filerne placeres i pages mappen og CSS samt JS filerne places i hhv. css og js mapper i assets mappen.
+
+Dette gøres for at gøre koden genanvendelig og skalerbart.
