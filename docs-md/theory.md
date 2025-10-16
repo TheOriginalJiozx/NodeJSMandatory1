@@ -907,9 +907,13 @@ console.log(sum(10 + 7));
 <a href="index.html">Gå til forside</a> <!-- kræver brugerinteraktion -->
 ```
 
+###
+
 ```javascript
 window.location.href="index.html"; // automatisk viderestilling
 ```
+
+###
 
 ```html
 <meta http-equiv="refresh" content="0; url=/index"> <!-- viderestiller efter et bestemt antal milisekunder -->
@@ -926,6 +930,8 @@ res.redirect(302, '/index'); // Midlertidig redirect
 
 // alle ovenstående medfører automatiske viderestillinger
 ```
+
+###
 
 ```javascript
 setTimeout(() => {
