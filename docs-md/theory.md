@@ -1050,7 +1050,7 @@ console.log(data);
 
 I HTML er der nogle semantiske elementer:
 
-Navigationen, <code>nav</code>, skal være øverst på siden, indhold skal være i et <code>main</code>-tag og footer skal være på bunden i et <code>footer</footer>-tag.
+Navigationen, <code>nav</code>, skal være øverst på siden, indhold skal være i et <code>main</code>-tag og footer skal være på bunden i et <code>footer</code>-tag.
 
 ## Bedre struktur i frontend
 
@@ -1059,3 +1059,132 @@ En velstruktureret frontend har typisk assets og pages mapper hvori de seperarer
 HTML filerne placeres i pages mappen og CSS samt JS filerne places i hhv. css og js mapper i assets mappen.
 
 Dette gøres for at gøre koden genanvendelig og skalerbart.
+
+# 07. Server-side Rendering (SSR) / Routers
+**Dato:** 09. oktober
+
+## Emner dækket
+- Server-Side Rendering vs Client-Side Rendering
+- Fillæsning
+- Nodemon Extensions
+
+---
+
+## Server-Side Rendering (SSR) / Routers
+
+SSR refererer til webudviklingsteknik hvor serveren genererer HTML og sender det til browseren, dvs. klienten (Server -> Client).
+
+###
+Dette er i kontrast til CSR (Client-Side Rendering) hvor klienten modtage rå data (raw data) og bruger JavaScript til at gengive HTML.
+
+###
+CSR giver hurtigere interaktivitet på hjemmesiden, reduceret server load og er god for hjemmesider, som påkræver dynamiske opdatering. Flere fordele er hurtigere navigering og SPA med dynamisk routing er muligt.
+
+###
+Men det har også sine ulemper såsom SEO limits, længere initial loading time, brugere ser en blank side hvis JavaScript er deaktiveret og caching er ikke muligt før hele siden er 100% loaded og det kan give CORS-problemer når klienten skal fetch'e data fra eksterne API'er.
+
+###
+SSR forbedrer SEO, giver hurtigere loading time, er god for statiske hjemmesider, eliminerer loading screens, giver ingen CORS-problemer, mindre serverbelastning.
+
+###
+SSR har også sine ulemper såsom øget server load, forsinket hjemmesideaktivitet, øget server belastning, øget udviklingskompleksitet og omkostningsmæssige konsekvenser (cost implications). Hver interaktion kræver ny serverforespørgsel (medfører længere gengivelsestid).
+
+### Sammenligning
+
+<table class="table-auto border-collapse border border-slate-300 text-sm">
+  <thead class="bg-slate-100">
+    <tr>
+      <th class="border border-slate-300 px-2 py-1 text-left">Faktor</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">SSR</th>
+      <th class="border border-slate-300 px-2 py-1 text-left">CSR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border px-2 py-1">Loading time</td>
+      <td class="border px-2 py-1">Hurtig</td>
+      <td class="border px-2 py-1">Langsom</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">Ressourceforbrug</td>
+      <td class="border px-2 py-1">På serveren</td>
+      <td class="border px-2 py-1">På klienten</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">SEO</td>
+      <td class="border px-2 py-1"><code>Meget godt</td>
+      <td class="border px-2 py-1">Dårligt</td>
+    </tr>
+    <tr>
+      <td class="border px-2 py-1">CORS</td>
+      <td class="border px-2 py-1"><code>Ingen problemer</td>
+      <td class="border px-2 py-1">Kræver håndtering via CORS headers/proxy</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### SSR Eksempel (Embedded JavaScript / Express)
+
+```javascript
+app.get("/", (req, res) => {
+  res.render("index", { title: "Home"});
+});
+```
+
+### CSR Eksempel
+
+```javascript
+fetch("/api/data")
+  .then(res => res.json())
+  .then(data => console.log(data));
+```
+
+## Fillæsning
+
+For at læse filer i Node.js skal man benytte sig af modules <code>fs</code> (File System).
+
+### Eksempel på asynkron læsning (async)
+
+```javascript
+import fs from "fs/promises";
+
+const content = await fs.readFile("fileData.txt", "utf-8");
+console.log(content);
+```
+
+### Eksempel på synkron læsning (sync)
+
+```javascript
+import fs from "fs";
+
+const content = fs.readFileSync("fileData.txt", "utf-8");
+console.log(content);
+```
+
+Forskellen på Asynkron læsning (async) og Synkron læsning (sync), er at async blokerer ikke evnet loopet (await blokerer ikke) og sync kan gøre vores applikation længere.
+
+## Nodemon Extensions
+
+Nodemon genstarter vores server/applikation automatisk når den opfanger ændringer. Du kan ved brug af <command>--ext</command> specificere hvilke filtyper den skal overvåge.
+
+### Eksempel
+```bash
+nodemon app.js --ext js,json,ejs,css,md
+```
+
+## Kodestruktur & vedligeholdelse
+
+Det er vigtigt med en god kodestruktur/mappestruktur da kode i lange file er svære at læse, teste og vedligeholde. Derfor er en god løsning at opdele filer i controllers, services, repositories, models og routes.
+
+### Eksempel på mappestruktur
+
+```css
+src/
+├── controllers/
+├── services/
+├── models/
+└── routes/
+```
+
+Dette giver et bedre overblik over projekter, skaber modularitet (reduceret kompleksitet) og mindre hukommelsesforbrug.
