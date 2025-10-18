@@ -1142,7 +1142,7 @@ fetch("/api/data")
 
 ## Fillæsning
 
-For at læse filer i Node.js skal man benytte sig af modules <code>fs</code> (File System).
+For at læse filer i Node.js skal man benytte sig af modulet <code>fs</code> (File System).
 
 ### Eksempel på asynkron læsning (async)
 
