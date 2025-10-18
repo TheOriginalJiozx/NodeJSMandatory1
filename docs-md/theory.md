@@ -1162,7 +1162,7 @@ const content = fs.readFileSync("fileData.txt", "utf-8");
 console.log(content);
 ```
 
-Forskellen på Asynkron læsning (async) og Synkron læsning (sync), er at async blokerer ikke evnet loopet (await blokerer ikke) og sync kan gøre vores applikation længere.
+Forskellen på Asynkron læsning (async) og Synkron læsning (sync), er at async blokerer ikke event loopet (await blokerer ikke) og sync kan gøre vores applikation langsommere.
 
 ## Nodemon Extensions
 
