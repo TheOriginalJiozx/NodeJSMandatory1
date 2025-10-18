@@ -370,7 +370,7 @@ Hello from Express!
 
 ## GET Requests
 
-<code>GET bruges til at hende data fra vores server.</code>
+<code>GET</code> bruges til at hente data fra vores server.
 
 ### Eksempel på GET Request
 
@@ -554,7 +554,7 @@ http://localhost:3000/aflevering/docs/theory
     </tr>
     <tr>
       <td class="border px-2 py-1">localhost</td>
-      <td class="border px-2 py-1"><code>Host / Domæne</code></td>
+      <td class="border px-2 py-1">Host / Domæne</td>
       <td class="border px-2 py-1">Serverens web-adresse</td>
     </tr>
     <tr>
@@ -564,7 +564,7 @@ http://localhost:3000/aflevering/docs/theory
     </tr>
     <tr>
       <td class="border px-2 py-1">/docs/theory</td>
-      <td class="border px-2 py-1"><code>Path</td>
+      <td class="border px-2 py-1">Path</td>
       <td class="border px-2 py-1">Den konkrete rute på serveren</td>
     </tr>
   </tbody>
@@ -615,7 +615,6 @@ Der kan sendes data fra klienten til serveren på flere forskellige måder, som 
 ### Request body
 
 ```javascript
-
 // Step 1: Lav en fetch
 
 fetch("http://localhost:3000/api/students", {
@@ -641,12 +640,18 @@ app.post("/api/students", (req, res) => {
 });
 
 app.listen(3000, () => console.log("Serveren lytter på port 3000"));
+```
 
+###
+```json
 // Step 3: Start serveren
 
 { name: 'Omar', age: 30 } // serverens konsol viser dette
+```
 
-Studerende Omar tilføjet! // du (klienten) ser dette
+###
+```bash
+Studerende Omar tilføjet! # du (klienten) ser dette
 ```
 
 ## Visning af HTML med Express
@@ -861,15 +866,18 @@ console.log(e);
 
 ## CommonJS vs ES Modules i Node.js
 
-Node.js understøtter to måder man kan importere og eksportere moduler på:
+**Node.js** understøtter to måder man kan importere og eksportere moduler på:
 
 **CommonJS** og **ES Modules**
 
-CommonJS var standarden før ES Modules blev introduceret og blev standarden.
+**CommonJS** var standarden før **ES Modules** blev introduceret og blev standarden.
 
 ### CommonJS Eksempel
 
 ```javascript
+// tilføj i en HTML-fil
+<script type="module" src="main.js"></script>
+
 // math.js
 function sum(a, b) {
     return a + b;
@@ -883,9 +891,10 @@ console.log(sum(10, 7));
 
 ### ES Modules Eksempel
 ```bash
-"type": "module"
+"type": "module" # husk dette i package.json
 ```
 
+###
 ```javascript
 // math.js
 export function sum(a, b) {
@@ -951,18 +960,18 @@ npm init
 
 ### Terminal prompts
 ```bash
-- name: Hvad skal dit projekt hedde?
-- version: Initiel projekt version
+- name: hvad skal dit projekt hedde?
+- version: initiel projekt version
 - description: kort beskrivelse af dit projekt
 - entry point: main fil i dit projekt # default er index.js
-- test command: hvilken kommando vil du bruge til at køre tests
+- test command: hvilken kommando vil du bruge til at køre tests?
 - git repository: dit GitHub repository url
 - keywords: et array af keywords, som kan hjælpe andre med at finde dit projekt
-- author: hvad hedder du
+- author: hvad hedder du?
 - license: hvilken license vil du bruge? # default er "ISC"
 ```
 
-**meta data** i package.json er alt hvad du bliver promptet til at udfylde efter du har kørt <code>npm init</code>.
+<code>meta-data</code> i package.json er alt hvad du bliver promptet til at udfylde efter du har kørt <code>npm init</code>.
 
 ```json
 {
@@ -1112,12 +1121,12 @@ SSR har også sine ulemper såsom øget server load, forsinket hjemmesideaktivit
     </tr>
     <tr>
       <td class="border px-2 py-1">SEO</td>
-      <td class="border px-2 py-1"><code>Meget godt</td>
+      <td class="border px-2 py-1">Meget godt</td>
       <td class="border px-2 py-1">Dårligt</td>
     </tr>
     <tr>
       <td class="border px-2 py-1">CORS</td>
-      <td class="border px-2 py-1"><code>Ingen problemer</td>
+      <td class="border px-2 py-1">Ingen problemer</td>
       <td class="border px-2 py-1">Kræver håndtering via CORS headers/proxy</td>
     </tr>
   </tbody>
@@ -1128,7 +1137,7 @@ SSR har også sine ulemper såsom øget server load, forsinket hjemmesideaktivit
 
 ```javascript
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home"});
+  res.render("index", { title: "Home" });
 });
 ```
 
