@@ -1,6 +1,6 @@
 # Terminal kommandoer
 
-Her er nogle terminal kommandoer vi har brugt
+Her er nogle terminal kommandoer vi har brugt.
 
 ## Installation
 ```bash

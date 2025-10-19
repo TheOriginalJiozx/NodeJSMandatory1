@@ -4,8 +4,8 @@ Dette er forsiden for min dokumentationshjemmeside, som er oprettet med Node.js 
 
 ## Indhold
 
-- Værktøjer – de værktøjer vi har brugt til undervisningen
-- Kommandoer – terminal kommandoerne vi har brugt til undervisningen
+- Værktøjer – de værktøjer vi har brugt i undervisningen
+- Kommandoer – terminal kommandoerne vi har brugt i undervisningen
 - Teori – gennemgået teori
 
 ## Code snippet
