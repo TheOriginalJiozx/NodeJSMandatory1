@@ -4,9 +4,9 @@ Dette er forsiden for min dokumentationshjemmeside, som er oprettet med Node.js 
 
 ## Indhold
 
-- Tools – de værktøjer vi har brugt til undervisningen
-- Commands – terminal kommandoerne vi har brugt til undervisningen
-- Theory – gennemgået teori
+- Værktøjer – de værktøjer vi har brugt til undervisningen
+- Kommandoer – terminal kommandoerne vi har brugt til undervisningen
+- Teori – gennemgået teori
 
 ## Code snippet
 ```javascript
